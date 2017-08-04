@@ -1,0 +1,458 @@
+/******************* BEGIN NORMALIZE *******************/
+/* ! normalize.css v7.0.0 | MIT License | github.com/necolas/normalize.css */
+
+button,
+hr,
+input {
+    overflow: visible
+}
+audio,
+canvas,
+progress,
+video {
+    display: inline-block
+}
+progress,
+sub,
+sup {
+    vertical-align: baseline
+}
+[type=checkbox],
+[type=radio],
+legend {
+    box-sizing: border-box;
+    padding: 0
+}
+html {
+    line-height: 1.15;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%
+}
+body {
+    margin: 0
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+main,
+menu,
+nav,
+section {
+    display: block
+}
+h1 {
+    font-size: 2em;
+    margin: .67em 0
+}
+figure {
+    margin: 1em 40px
+}
+hr {
+    box-sizing: content-box;
+    height: 0
+}
+code,
+kbd,
+pre,
+samp {
+    font-family: monospace, monospace;
+    font-size: 1em
+}
+a {
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects
+}
+abbr[title] {
+    border-bottom: none;
+    text-decoration: underline;
+    text-decoration: underline dotted
+}
+b,
+strong {
+    font-weight: bolder
+}
+dfn {
+    font-style: italic
+}
+mark {
+    background-color: #ff0;
+    color: #000
+}
+small {
+    font-size: 80%
+}
+sub,
+sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative
+}
+sub {
+    bottom: -.25em
+}
+sup {
+    top: -.5em
+}
+audio:not([controls]) {
+    display: none;
+    height: 0
+}
+img {
+    border-style: none
+}
+svg:not(:root) {
+    overflow: hidden
+}
+button,
+input,
+optgroup,
+select,
+textarea {
+    font-family: sans-serif;
+    font-size: 100%;
+    line-height: 1.15;
+    margin: 0
+}
+button,
+select {
+    text-transform: none
+}
+[type=reset],
+[type=submit],
+button,
+html [type=button] {
+    -webkit-appearance: button
+}
+[type=button]::-moz-focus-inner,
+[type=reset]::-moz-focus-inner,
+[type=submit]::-moz-focus-inner,
+button::-moz-focus-inner {
+    border-style: none;
+    padding: 0
+}
+[type=button]:-moz-focusring,
+[type=reset]:-moz-focusring,
+[type=submit]:-moz-focusring,
+button:-moz-focusring {
+    outline: ButtonText dotted 1px
+}
+fieldset {
+    padding: .35em .75em .625em
+}
+legend {
+    color: inherit;
+    display: table;
+    max-width: 100%;
+    white-space: normal
+}
+textarea {
+    overflow: auto
+}
+[type=number]::-webkit-inner-spin-button,
+[type=number]::-webkit-outer-spin-button {
+    height: auto
+}
+[type=search] {
+    -webkit-appearance: textfield;
+    outline-offset: -2px
+}
+[type=search]::-webkit-search-cancel-button,
+[type=search]::-webkit-search-decoration {
+    -webkit-appearance: none
+}
+::-webkit-file-upload-button {
+    -webkit-appearance: button;
+    font: inherit
+}
+summary {
+    display: list-item
+}
+[hidden],
+template {
+    display: none
+}
+/******************* END NORMALIZE *******************/
+
+html{
+	background-color: black !important;
+	color: white !important;
+}
+button{
+	color: white;
+	background-color: gray;
+	border: none;
+	border-radius: 10px;
+	font-size: 15px;
+}
+
+/******************* INIT W3 SIDENAV *************************/
+/* The side navigation menu */
+.sidenav {
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0;
+    right: 0;
+    background-color: #111; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+    float: right;
+    text-align: right;
+}
+
+/* The navigation menu links */
+.sidenav a {
+    margin: 8px 32px 8px 8px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #b2b2b2;
+    display: block;
+    transition: 0.3s
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    font-size: 36px;
+    padding-bottom: 0px;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+    transition: margin-right .5s;
+    padding: 20px;
+	color: white;
+    margin-top: 40px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
+/* MY EDITATIONS */
+.sidenav .fixedBottom{
+    position: absolute;
+    bottom: 10%;
+	width: 100%	
+}
+
+.sidenav .fixedBottom .italicBtn{
+	font-style: italic;
+	font-size: 15px !important;
+    text-align: right;
+}
+/******************* END W3 **************************/
+
+
+/******************* INIT MY KART *************************/
+/* The top navigation kart */
+.kart {
+    width: 90%;
+    height: 0px; 
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    background-color: #111;
+    overflow-x: hidden; 
+    transition: 0.5s;
+	margin-left: 5%;
+	text-align: center;
+}
+
+/* The navigation menu links */
+.kart a {
+    margin: 8px 32px 8px 8px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #b2b2b2;
+    display: block;
+    transition: 0.3s
+}
+
+/* When you mouse over the navigation links, change their color */
+.kart a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.kart .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    padding-bottom: 0px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .kart {padding-top: 15px;}
+    .kart a {font-size: 18px;}
+    .kart h1 {font-size: 20px;}
+}
+
+/* .kart h1 { */
+    /* transition: 0.3s	 */
+/* } */
+
+.kart .fixedBottom{
+    position: absolute;
+    bottom: 10%;
+	width: 100%
+}
+
+.kart .fixedBottom .italicBtn{
+	font-style: italic;
+    text-align: right;
+}
+/******************* END KART **************************/
+
+img{
+	width: 100%;
+    height: auto;
+    border-radius: 50%;
+}
+
+td img{
+	width: 100px;
+    height: 100px;
+    border-radius: 20px;
+}
+
+.ignore-css{
+	all:unset;
+}
+
+.openBtn{
+    position: fixed;
+    top: 0;
+    font-size: 2em;
+    text-decoration: none;
+    background-color: transparent;
+    color: #b2b2b2;
+    padding: 0px 8px 0px 8px;
+	margin: 8px 24px 8px 0;
+	border-radius: 50%;
+	font-weight: bold;	
+}
+.openKart {
+    right: 60px;
+}
+.openMenu {	
+    right: 10px;
+}
+
+.closeMsg{
+	margin: 8px 8px 8px 8px;
+    text-decoration: none;
+    color: #b2b2b2;
+    display: block;
+    transition: 0.3s;
+	position: absolute;
+    top: 0;
+    right: 10px;
+    font-size: 36px;
+    padding-bottom: 0px;
+}
+
+.littleBar{
+    margin: 0% 10% 5% 10%;
+    color: #b2b2b2;    
+}
+
+.logoPadding{
+    padding: 0 5% 5% 5% !important;
+}
+
+.pageGrid{
+    border-collapse: collapse;
+    width: 100%;
+}
+.pageGrid tr:hover{
+	background-color: gray;
+	border-radius: 20px;
+}
+.pageGrid td{
+    border: 1px solid #ddd;	
+    /* padding: 15px;	 */
+	padding: 2% 1% 2% 1%;
+	text-align: center;
+}
+
+.pageGrid button{
+    background-color: black;
+	color: white;
+}
+
+.msgBox{
+	position:absolute;
+	top:50%;
+	left:50%;
+	margin-left:-150px;
+	margin-top:-100px;
+	width:300px;
+	height:200px;
+	border:1px solid #d0d0d0;
+	text-align: center;
+	display: table; 
+}
+
+.successMsg{
+	background-color: green;
+	color: black;
+}
+
+.erroMsg{
+	background-color: red;
+	color: black;
+}
+
+.textMsg{
+	text-align:center;
+	vertical-align: middle;
+	display: table-cell;
+}
+
+.header{
+    background-color: #111;
+	top: 0px;
+    position: fixed;
+    width: 100%;
+}
+
+.pageTitle{
+    margin: 8px 1% 8px 5%;
+    padding: 0 1% 0 1%;
+    color: #b2b2b2;
+}
+
+.deptTitle{
+	text-align: center;
+    color: #b2b2b2;
+}
+
+.kartBtns{
+	display: inline-flex;
+    font-size: 2em;
+    text-decoration: none;
+    background-color: transparent;
+    color: #b2b2b2;
+    padding: 0px 8px 0px 8px;
+	margin: 8px 24px 8px 0;
+	border-radius: 50%;
+	font-weight: bold;	
+    float: right;
+}

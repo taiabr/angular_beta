@@ -1,0 +1,77 @@
+﻿contato.8moons@hotmail.com
+senha: lu044118
+
+8moons:
+8moons.bazzar@gmail.com
+admin.password2
+
+gmail:
+8moons.bazzar@gmail.com
+admin.password
+
+	var dept = { 
+		name: '',  						// departamento
+		products: [						// produtos do departamento
+			// item: {
+				// add: "addItem()", 	// funcao de adicao ao carrinho
+				// del: "delItem()",	// funcao de delecao do carrinho
+				// dept: "",			// departamento
+				// id: "",				// id do firebase
+				// img: "",				// url da imagem
+				// name: "",			// nome do produto
+				// qtd: "",				// quantidade disponivel
+				// size: "",			// tamanho
+				// value: ""			// valor
+			// }
+		] 	
+	};
+	
+$scope.pageGrid: [{
+		name: "Saias"
+		products: [{
+			// add: "addItem('-Ko8cHEjHwxiipx4xC6t')"
+			// del: "delItem('-Ko8cHEjHwxiipx4xC6t')"
+			dept: "Saias"
+			id: "-Ko8cHEjHwxiipx4xC6t"
+			img: "saia-longa.jpg"
+			name: "Saia Longa com Cinto"
+			qtd: "7"
+			size: "M"
+			value: "25.00"
+		}, {
+			// add: "addItem('-Ko8cHEjHwxiipx4xC6u')"
+			// del: "delItem('-Ko8cHEjHwxiipx4xC6u')"
+			dept: "Saias"
+			id: "-Ko8cHEjHwxiipx4xC6u"
+			img: "vestido-moleton.jpg"
+			name: "Vestido de Moleton 3 em 1"
+			qtd: "5"
+			size: "M"
+			value: "60.00"
+		}]
+	}, {
+		name: "Vestidos"
+		products: [{
+			// add: "addItem('-Ko8cHEjHwxiipx4xC6t')"
+			// del: "delItem('-Ko8cHEjHwxiipx4xC6t')"
+			dept: "Vestidos"
+			id: "-Ko8cHEjHwxiipx4xC6t"
+			img: "saia-longa.jpg"
+			name: "Saia Longa com Cinto"
+			qtd: "7"
+			size: "M"
+			value: "25.00"
+		}, {
+			// add: "addItem('-Ko8cHEjHwxiipx4xC6u')"
+			// del: "delItem('-Ko8cHEjHwxiipx4xC6u')"
+			dept: "Vestidos"
+			id: "-Ko8cHEjHwxiipx4xC6u"
+			img: "vestido-moleton.jpg"
+			name: "Vestido de Moleton 3 em 1"
+			qtd: "5"
+			size: "M"
+			value: "60.00"
+		}]
+	}
+
+]

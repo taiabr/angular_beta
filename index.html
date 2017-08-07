@@ -2,6 +2,9 @@
 <html ng-app='8moons' ng-controller='8moonsController'>
 
 <head>
+	<!-- Renderização adequada / zoom pelo toque -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
 	<!-- Titulo da pagina -->
 	<title>8Moons Bazaar</title>
 
@@ -29,8 +32,8 @@
 			<a target="_blank" href='{{logo}}' class='logoPadding'>
 				<img ng-src='{{logo}}'>
 			</a>
-			<div ng-repeat='dept in pageGrid'>
-				<a href="#{{dept.name}}">{{dept.name}}</a>
+			<div ng-repeat='dept in pageDeparts'>
+				<a href="#{{dept}}">{{dept}}</a>
 			</div>
 			<div class='fixedBottom'>
 				<hr class='littleBar'>
@@ -43,20 +46,29 @@
 		<div id="myKart" class="kart" ng-controller='kartController'>
 			<h1 class='pageTitle'>Carrinho</h1>
 			<a class="closebtn" href="javascript:void(0)" ng-click="toggleKart()">&times;</a>
+			<hr class='littleBar'>	
 							
 			<table class='pageKart'>
+			    <tr>
+					<th class='tblHeader tName'>Produto</th>
+					<th class='tblHeader tValue'>Valor(R$)</th>
+					<th class='tblHeader tSize'>Tamanho</th>
+					<th class='tblHeader tQtd'>Quantidade</th>
+			    </tr>
 				<tr ng-repeat="item in pageKart">
-					<td>{{item.name}}</td>
-					<td>R$ {{item.value}}</td>
-					<td>Tamanho {{item.size}}</td>
-					<td>
-						<button ng-click='delItem(item.id);'><i class="fa fa-trash"></i></button>
+					<td class='tName'>{{item.name}}</td>
+					<td class='tValue'>{{item.value}}</td>
+					<td class='tSize'>Tamanho {{item.size}}</td>
+					<td class='tQtd'>
+						<button ng-click='minus(item.id);'><i class="fa fa-minus"></i></button>
+					    {{item.qtd}}
+						<button ng-click='plus(item.id);'><i class="fa fa-plus"></i></button>
 					</td>
 				</tr>
 			</table>
 				
 			<div class='fixedBottom'>
-				<hr class='littleBar'>				
+				<!-- <hr class='littleBar'>		 -->		
 				<div class='kartBtns'>
 					<a class='italicBtn clear' href="javascript:void(0)">Clear</a>
 					<a class='italicBtn checkout' href="#info">Check Out</a>
@@ -68,15 +80,15 @@
 	<!-- Message box -->
 	<div ng-switch="msg.type">
 		<div class='msgBox erroMsg' ng-switch-when="E">
-			<a class="closeMsg" href="javascript:void(0)" ng-click="clearMsg()">&times;</a>
+			<a class="closeMsg" href="javascript:void(0)" ng-click="clearMsg();">&times;</a>
 			<h3>Erro: </h3>
 			<hr class='littleBar'>
-			<div class='msgBox' ng-repeat='line in msg.text'>
-				<p class='textMsg'>{{line}}</p>
+			<div class='msgBox'>
+				<p class='textMsg'>{{msg.text}}</p>
 			</div>
 		</div>
 		<div class='msgBox successMsg' ng-switch-when="S">
-			<a class="closeMsg" href="javascript:void(0)" ng-click="clearMsg()">&times;</a>
+			<a class="closeMsg" href="javascript:void(0)" ng-click="clearMsg();">&times;</a>
 			<h2>Sucesso: </h2>
 			<hr class='littleBar'>
 			<div class='msgBox'>
@@ -90,19 +102,19 @@
 		<div ng-controller='gridController'>	
 			<div ng-repeat='dept in pageGrid' id='{{dept.name}}'>
 			
-				<h3 class='deptTitle'>{{dept.name}}</h3>	
+				<h2 class='deptTitle'>{{dept.name}}</h2>
 				<hr class='littleBar'>
 				
 				<table class='pageGrid'>
 					<tr ng-repeat="item in dept.products">
-						<td>
+						<td class='tImg'>
 							<a target="_blank" href='{{item.img}}'><img ng-src='{{item.img}}'></a>
 						</td>
-						<td>{{item.name}}</td>
-						<td>R$ {{item.value}}</td>
-						<td>Tamanho {{item.size}}</td>
-						<td>
-							<button ng-click='addItem(item.id);'>Comprar</button>
+						<td class='tName'>{{item.name}}</td>
+						<td class='tValue'>R$ {{item.value}}</td>
+						<td class='tSize'>Tamanho {{item.size}}</td>
+						<td class='tButton'>
+							<button ng-click='buy(item.id);'>Comprar</button>
 						</td>
 					</tr>
 				</table>

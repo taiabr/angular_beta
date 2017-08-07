@@ -177,6 +177,14 @@ template {
 }
 /******************* END NORMALIZE *******************/
 
+/* Informacao nao ficar maior que a tela */
+* {
+    -moz-box-sizing: border-box !important; 
+	-webkit-box-sizing: border-box !important; 
+	box-sizing: border-box !important;
+	overflow-x: hidden;
+}
+
 html{
 	background-color: black !important;
 	color: white !important;
@@ -243,6 +251,7 @@ button{
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
 }
+
 /* MY EDITATIONS */
 .sidenav .fixedBottom{
     position: absolute;
@@ -257,20 +266,20 @@ button{
 }
 /******************* END W3 **************************/
 
-
 /******************* INIT MY KART *************************/
 /* The top navigation kart */
 .kart {
     width: 90%;
     height: 0px; 
     position: fixed;
-    z-index: 1;
+    z-index: 0;
     top: 0;
     background-color: #111;
-    overflow-x: hidden; 
     transition: 0.5s;
 	margin-left: 5%;
 	text-align: center;
+    padding: 1%;
+    overflow: hidden;
 }
 
 /* The navigation menu links */
@@ -304,14 +313,11 @@ button{
     .kart h1 {font-size: 20px;}
 }
 
-/* .kart h1 { */
-    /* transition: 0.3s	 */
-/* } */
-
 .kart .fixedBottom{
     position: absolute;
-    bottom: 10%;
-	width: 100%
+    bottom: 0%;
+	width: 100%;
+    margin-bottom: 0%;
 }
 
 .kart .fixedBottom .italicBtn{
@@ -327,9 +333,10 @@ img{
 }
 
 td img{
-	width: 100px;
-    height: 100px;
-    border-radius: 20px;
+	height: auto;
+    width: 150px;
+    border-radius: 0px;
+	overflow: hidden;
 }
 
 .ignore-css{
@@ -366,6 +373,7 @@ td img{
     right: 10px;
     font-size: 36px;
     padding-bottom: 0px;
+    z-index: 1;
 }
 
 .littleBar{
@@ -375,26 +383,6 @@ td img{
 
 .logoPadding{
     padding: 0 5% 5% 5% !important;
-}
-
-.pageGrid{
-    border-collapse: collapse;
-    width: 100%;
-}
-.pageGrid tr:hover{
-	background-color: gray;
-	border-radius: 20px;
-}
-.pageGrid td{
-    border: 1px solid #ddd;	
-    /* padding: 15px;	 */
-	padding: 2% 1% 2% 1%;
-	text-align: center;
-}
-
-.pageGrid button{
-    background-color: black;
-	color: white;
 }
 
 .msgBox{
@@ -455,4 +443,55 @@ td img{
 	border-radius: 50%;
 	font-weight: bold;	
     float: right;
+}
+
+.pageGrid{
+    border-collapse: collapse;
+    width: 100%;
+}
+.pageGrid tr:hover{
+	background-color: #111;
+}
+.pageGrid td{
+	padding: 2% 1% 2% 1%;
+	text-align: center;
+	font-size: 1.3em;
+}
+
+.pageGrid button{
+    background-color: black;
+	color: white;
+}
+
+.pageKart{
+    border-collapse: collapse;
+    width: 100%;
+    overflow-y: auto;
+}
+.pageKart .tblHeader{
+	border: 1px solid #ddd;
+	color: #b2b2b2;
+}
+.pageKart tr:hover{
+	background-color: #111;
+}
+.pageKart td{
+	padding: 2% 1% 2% 1%;
+	text-align: center;
+}
+.pageKart button{
+	background-color: transparent;
+}
+
+.tName{width: 35%;}
+.tValue{width: 20%;}
+.tSize{width: 25%;}
+.tQtd{width: 35%;}
+.tButton{width: 10%;}
+.tButton button{ 
+    margin: 8px 32px 8px 8px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #d3d1d1;
+    display: block;
 }

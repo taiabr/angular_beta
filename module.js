@@ -2,9 +2,7 @@ var module = angular.module('8moons', []);
 
 module.run(function($rootScope) {
 	$rootScope.grid = {};
-	$rootScope.pageGrid = [];
 	$rootScope.kart = {};
-	$rootScope.pageKart = [];
 	$rootScope.mailInfo = {
 		mail: '',
 		password: '',
@@ -32,67 +30,6 @@ module.run(function($rootScope) {
 	$rootScope.storage = storage.ref();
 	
 	// Funcoes ////////////////////////////////////////////////////////////////////////////////////////////
-	// Carrega o grid
-	loadGrid = function(products){		
-		var departments = [];
-		
-		for(id in products){
-			if( !departments.includes( products[id].dept )){	
-				departments.push(products[id].dept);	
-
-				// Busca produtos do departamento
-				var deptProducts = getProducts(products[id].dept, products);
-				
-				// Monta departamento
-				var dept = {
-					name: products[id].dept,
-					products: deptProducts,
-				};				
-				
-				// Insere departamento com seus produtos em tela
-				var gridIndex = $rootScope.pageGrid.push(dept);				
-				for( prodIndex in deptProducts ){
-					// Carrega imagens dos produtos
-					setImg( 'products', deptProducts[prodIndex].img, gridIndex - 1, prodIndex );
-				};
-			};
-		};
-	};	
-	// Busca produtos
-	getProducts = function(dept, products){
-		var screenProducts = [];
-			
-		// Seta produtos em tela
-		for(id in products){
-			if(products[id].dept === dept){		
-				// Monta item
-				var item = Object.assign({}, products[id]);
-		
-				// Insere no buffer
-				$rootScope.grid[id] = item;
-				
-				// Insere na tela
-				item.id  = id;
-				screenProducts.push(item);	
-			};
-		};
-		return screenProducts;
-	};	
-	// Seta imagem na tela
-	setImg = function(imgForlder, imgPath, gridIndex, prodIndex){				
-		var imagesRef = $rootScope.storage.child(imgForlder);
-		imagesRef.child(imgPath).getDownloadURL().then(function(url) {
-			if(imgForlder === 'logo'){
-				$rootScope.logo = url;
-			} else {
-				$rootScope.pageGrid[gridIndex].products[prodIndex].img = url;
-			};
-			$rootScope.$apply();
-		})
-		.catch( function(erro) {
-			console.log(erro.message);
-		});				
-	};	
 
 	// Mensagens //////////////////////////////////////////////////////////////////////////////////////////
 	$rootScope.setMsg = function(type, text){
@@ -100,33 +37,27 @@ module.run(function($rootScope) {
 		$rootScope.msg.type = type;
 	};	
 	$rootScope.clearMsg = function(){
-		$rootScope.msg.text = [];
+		$rootScope.msg.text = '';
 		$rootScope.msg.type = '';
 	};
 	
-	// Inicializa a tela do carrinho
-	$rootScope.initKart = function(){	
-		$rootScope.pageKart = [];
-		for(id in $rootScope.kart){
-			// Monta item
-			var item = Object.assign({}, $rootScope.kart[id]);
-			item.id  = id;
-			
-			// Insere informacoes do produto
-			$rootScope.pageKart.push(item);	
-		};			
-	};	
-	
-	// Inicializacao //////////////////////////////////////////////////////////////////////////////////////			
+	// Inicializacao do Grid //////////////////////////////////////////////////////////////////////////////			
 	$rootScope.database.once("value").then( function(snapshot) {		
-		// Seta logo
-		setImg('logo', 'logo-compact.png');	
+		// Seta logo				
+		// var imagesRef = $rootScope.storage.child('logo');
+		// imagesRef.child('logo-compact.png').getDownloadURL()
+		$rootScope.storage.child('logo').child('logo-compact.png').getDownloadURL()
+		.then( function(url) {
+			$rootScope.logo = url;
+		}).catch( function(erro) { console.log(erro.message) });				
 		
 		// Inicializa pageGrid com dados do firebase
-		loadGrid( snapshot.child('productsAng').val() );
+		$rootScope.grid = snapshot.child('productsAng').val();
 		
 		// Busca configuracoes de email do firebase
 		$rootScope.mailInfo = snapshot.child('mailInfoAng').val();
+		
+		$rootScope.$digest()
 	})
 	.catch( function(erro) {
 		console.log(erro.message);

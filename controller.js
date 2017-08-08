@@ -1,41 +1,44 @@
-// Aplication /////////////////////////////////////////////////////////////////////////////////////////
-module.controller('8moonsController', function($scope){
-});
-
 // Header /////////////////////////////////////////////////////////////////////////////////////////////
 module.controller('headerController', function($scope){
-	$scope.pageDeparts = [];
+	// $scope.pageDeparts = [];
 	
 	// Carrega os departamentos no menu lateral
-	loadDeparts = function(products){
-		$scope.pageDeparts = []
-		
-		for(var id in products){
-			if( !$scope.pageDeparts.includes( products[id].dept ) ){ $scope.pageDeparts.push(products[id].dept) };
-		};
-	};
+	// loadDeparts = function(products){
+		// $scope.pageDeparts = []		
+		// for(var id in products){
+			// if( !$scope.pageDeparts.includes( products[id].dept ) ){ $scope.pageDeparts.push(products[id].dept) };
+		// };
+	// };
 	
 	// Abre menu
 	$scope.toggleNav = function() { 
 		if(document.getElementById("mySidenav").style.width === "250px"){
+			angular.element( document.querySelector( '#main' ) ).removeClass('disableClass');
+			angular.element( document.querySelector( '#header' ) ).removeClass('disableClass');
 			document.getElementById("mySidenav").style.width = "0px";
 		} else {
+			angular.element( document.querySelector( '#main' ) ).addClass('disableClass');
+			angular.element( document.querySelector( '#header' ) ).addClass('disableClass');
 			document.getElementById("mySidenav").style.width = "250px"; 
 		};
 	};
 	// Abre carrinho
 	$scope.toggleKart = function(){
-		if(document.getElementById("myKart").style.height === "500px"){
+		if(document.getElementById("myKart").style.height === "97%"){
+			angular.element( document.querySelector( '#main' ) ).removeClass('disableClass');
+			angular.element( document.querySelector( '#header' ) ).removeClass('disableClass');
 			document.getElementById("myKart").style.height = "0px";
 		} else {
-			document.getElementById("myKart").style.height = "500px"; 
-			// $scope.initKart();
+			angular.element( document.querySelector( '#main' ) ).addClass('disableClass');
+			angular.element( document.querySelector( '#header' ) ).addClass('disableClass');
+			document.getElementById("myKart").style.height = "97%"; 
 		};	
 	};
 
-	$scope.$watch( 'grid', function(newValue, oldValue) {
-		if(newValue != oldValue){ loadDeparts(newValue); };
-	}, true);
+	// Trigger para atualizacao automatica da tela
+	// $scope.$watch( 'grid', function(newValue, oldValue) {
+		// if(newValue != oldValue){ loadDeparts(newValue); };
+	// }, true);
 });
 
 // Grid ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -119,6 +122,7 @@ module.controller('gridController', function($scope){
 		};
 	};
 
+	// Trigger para atualizacao automatica da tela
 	$scope.$watch( 'grid', function(newValue, oldValue) {
 		if(newValue != oldValue){ loadGrid(newValue); };
 	}, true);	
@@ -143,7 +147,7 @@ module.controller('kartController', function($scope){
 	// Diminui quantidade
 	$scope.minus = function(id){ 
 		if ($scope.kart[id].qtd > 1){ 
-			$scope.kart[id].qtd -- 
+			$scope.kart[id].qtd --;
 		} else { 
 			delete $scope.kart[id] 
 		};
@@ -157,6 +161,7 @@ module.controller('kartController', function($scope){
 		};	
 	};
 	
+	// Trigger para atualizacao automatica da tela
 	$scope.$watch( 'kart', function(newValue, oldValue) {
 		if(newValue != oldValue){ loadKart(newValue); };
 	}, true);

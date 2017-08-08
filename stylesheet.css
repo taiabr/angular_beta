@@ -205,18 +205,22 @@ button{
     position: fixed; /* Stay in place */
     z-index: 1; /* Stay on top */
     top: 0;
-    right: 0;
+    /* right: 0; */
+    left: 0;
     background-color: #111; /* Black*/
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 60px; /* Place content 60px from the top */
     transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
-    float: right;
-    text-align: right;
+    /* float: right; */
+    float: left;
+    /* text-align: right; */
+    text-align: left;
 }
 
 /* The navigation menu links */
 .sidenav a {
-    margin: 8px 32px 8px 8px;
+    /* margin: 8px 32px 8px 8px; */
+    margin: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 25px;
     color: #b2b2b2;
@@ -233,23 +237,17 @@ button{
 .sidenav .closebtn {
     position: absolute;
     top: 0;
-    right: 10px;
+    left: 10px;
     font-size: 36px;
     padding-bottom: 0px;
+	margin: 0 8px 0 8px;
 }
 
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
 #main {
-    transition: margin-right .5s;
     padding: 20px;
 	color: white;
     margin-top: 40px;
-}
-
-/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-@media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 18px;}
 }
 
 /* MY EDITATIONS */
@@ -262,24 +260,26 @@ button{
 .sidenav .fixedBottom .italicBtn{
 	font-style: italic;
 	font-size: 15px !important;
-    text-align: right;
+    /* text-align: right; */
+    text-align: left;
 }
 /******************* END W3 **************************/
 
 /******************* INIT MY KART *************************/
 /* The top navigation kart */
 .kart {
-    width: 90%;
-    height: 0px; 
+    width: 95%;
+    height: 0px;
     position: fixed;
-    z-index: 0;
+    z-index: 1;
     top: 0;
     background-color: #111;
     transition: 0.5s;
-	margin-left: 5%;
 	text-align: center;
-    padding: 1%;
+	padding: 1% 1% 0% 1%;
     overflow: hidden;
+    margin-left: 2.5%;
+    margin-bottom: 3%;
 }
 
 /* The navigation menu links */
@@ -301,16 +301,10 @@ button{
 .kart .closebtn {
     position: absolute;
     top: 0;
-    right: 25px;
+    right: 10px;
     font-size: 36px;
     padding-bottom: 0px;
-}
-
-/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-@media screen and (max-height: 450px) {
-    .kart {padding-top: 15px;}
-    .kart a {font-size: 18px;}
-    .kart h1 {font-size: 20px;}
+	margin: 0 8px 0 8px;
 }
 
 .kart .fixedBottom{
@@ -333,7 +327,7 @@ img{
 }
 
 td img{
-	height: auto;
+	height: 150px;
     width: 150px;
     border-radius: 0px;
 	overflow: hidden;
@@ -343,23 +337,32 @@ td img{
 	all:unset;
 }
 
+.disableClass{
+	pointer-events: none;
+	opacity: 0.3;
+	overflow: hidden;
+}
+
 .openBtn{
     position: fixed;
     top: 0;
     font-size: 2em;
     text-decoration: none;
     background-color: transparent;
-    color: #b2b2b2;
-    padding: 0px 8px 0px 8px;
-	margin: 8px 24px 8px 0;
+    /* color: #b2b2b2; */
+    color: white;
 	border-radius: 50%;
 	font-weight: bold;	
 }
 .openKart {
-    right: 60px;
+    right: 10px;
+    padding: 0px 8px 0px 8px;
+	margin: 8px 0 8px 0;
 }
 .openMenu {	
-    right: 10px;
+    left: 10px;
+    padding: 0px 8px 0px 8px;
+	margin: 8px 0 8px 0;
 }
 
 .closeMsg{
@@ -396,6 +399,7 @@ td img{
 	border:1px solid #d0d0d0;
 	text-align: center;
 	display: table; 
+	z-index: 1;
 }
 
 .successMsg{
@@ -424,12 +428,13 @@ td img{
 .pageTitle{
     margin: 8px 1% 8px 5%;
     padding: 0 1% 0 1%;
-    color: #b2b2b2;
+	text-align: center;
+    /* color: #b2b2b2; */
 }
 
 .deptTitle{
 	text-align: center;
-    color: #b2b2b2;
+    /* color: #b2b2b2; */
 }
 
 .kartBtns{
@@ -456,8 +461,8 @@ td img{
 	padding: 2% 1% 2% 1%;
 	text-align: center;
 	font-size: 1.3em;
+    color: #b2b2b2;
 }
-
 .pageGrid button{
     background-color: black;
 	color: white;
@@ -470,7 +475,7 @@ td img{
 }
 .pageKart .tblHeader{
 	border: 1px solid #ddd;
-	color: #b2b2b2;
+	/* color: #b2b2b2; */
 }
 .pageKart tr:hover{
 	background-color: #111;
@@ -478,6 +483,7 @@ td img{
 .pageKart td{
 	padding: 2% 1% 2% 1%;
 	text-align: center;
+	color: #b2b2b2;
 }
 .pageKart button{
 	background-color: transparent;
@@ -489,9 +495,22 @@ td img{
 .tQtd{width: 35%;}
 .tButton{width: 10%;}
 .tButton button{ 
-    margin: 8px 32px 8px 8px;
-    text-decoration: none;
     font-size: 25px;
-    color: #d3d1d1;
-    display: block;
+	border-radius: 50%;
+}
+.tButton button:active{ 
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+/* @media screen and (max-width: 550px) { */
+@media (max-width: 550px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+    .kart a {font-size: 18px;}
+    .kart h1 {font-size: 20px;}
+	.pageGrid td{font-size: 1em;}
+	td img{
+		width: 90px; 
+		height: 90px;
+	}
 }

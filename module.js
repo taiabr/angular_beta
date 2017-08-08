@@ -3,6 +3,7 @@ var module = angular.module('8moons', []);
 module.run(function($rootScope) {
 	$rootScope.grid = {};
 	$rootScope.kart = {};
+	$rootScope.disableMain = "";
 	$rootScope.mailInfo = {
 		mail: '',
 		password: '',

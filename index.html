@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app='8moons' ng-controller='8moonsController'>
+<html ng-app='8moons'>
 
 <head>
 	<!-- Renderização adequada / zoom pelo toque -->
@@ -19,10 +19,10 @@
 	
 	<div ng-controller='headerController'>
 		<!-- Header -->
-		<div class='header'>
+		<div class='header' id='header'>
+			<a class='openBtn openMenu' href="javascript:void(0)" ng-click="toggleNav()"><i class="fa fa-bars"></i></a>
 			<h1 class='pageTitle'>8Moons Bazaar</h1>
 			<a class='openBtn openKart' href="javascript:void(0)" ng-click="toggleKart()"><i class="fa fa-shopping-cart"></i></a>
-			<a class='openBtn openMenu' href="javascript:void(0)" ng-click="toggleNav()"><i class="fa fa-bars"></i></a>
 		</div>
 	
 		<!-- Sidebar -->
@@ -32,9 +32,9 @@
 			<a target="_blank" href='{{logo}}' class='logoPadding'>
 				<img ng-src='{{logo}}'>
 			</a>
-			<div ng-repeat='dept in pageDeparts'>
-				<a href="#{{dept}}">{{dept}}</a>
-			</div>
+			<!-- <div ng-repeat='dept in pageDeparts'> -->
+				<!-- <a href="#{{dept}}">{{dept}}</a> -->
+			<!-- </div> -->
 			<div class='fixedBottom'>
 				<hr class='littleBar'>
 				<a class='italicBtn' href="#info">Informacoes</a>
@@ -100,9 +100,9 @@
 	<!-- Main screen -->
 	<div id="main">
 		<div ng-controller='gridController'>	
-			<div ng-repeat='dept in pageGrid' id='{{dept.name}}'>
+			<div ng-repeat='dept in pageGrid'>
 			
-				<h2 class='deptTitle'>{{dept.name}}</h2>
+				<h2 class='deptTitle' id='{{dept.name}}'>{{dept.name}}</h2>
 				<hr class='littleBar'>
 				
 				<table class='pageGrid'>
@@ -111,10 +111,12 @@
 							<a target="_blank" href='{{item.img}}'><img ng-src='{{item.img}}'></a>
 						</td>
 						<td class='tName'>{{item.name}}</td>
-						<td class='tValue'>R$ {{item.value}}</td>
 						<td class='tSize'>Tamanho {{item.size}}</td>
+						<td class='tValue'>R$ {{item.value}}</td>
 						<td class='tButton'>
-							<button ng-click='buy(item.id);'>Comprar</button>
+							<button ng-click='buy(item.id);' placeholder='Adicionar ao carrinho'>
+								<i class="fa fa-cart-plus"></i>
+							</button>
 						</td>
 					</tr>
 				</table>

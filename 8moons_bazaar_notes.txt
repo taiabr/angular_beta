@@ -10,7 +10,7 @@ gmail:
 admin.password
 
 	var dept = { 
-		name: '',  						// departamento
+		name: '',  						// departamento 
 		products: [						// produtos do departamento
 			// item: {
 				// add: "addItem()", 	// funcao de adicao ao carrinho

@@ -188,6 +188,15 @@ template {
 html{
 	background-color: black !important;
 	color: white !important;
+	overflow-x: hidden !important;
+	overflow: hidden; 
+	position: fixed;
+}
+body {   
+	position: fixed;
+    width: 100%;
+    height: 100%;
+	overflow: hidden;
 }
 button{
 	color: white;
@@ -205,31 +214,25 @@ button{
     position: fixed; /* Stay in place */
     z-index: 1; /* Stay on top */
     top: 0;
-    /* right: 0; */
     left: 0;
     background-color: #111; /* Black*/
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 60px; /* Place content 60px from the top */
     transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
-    /* float: right; */
     float: left;
-    /* text-align: right; */
     text-align: left;
 }
 
-/* The navigation menu links */
-.sidenav a {
-    /* margin: 8px 32px 8px 8px; */
+.sidenav a, .sidenav p{
     margin: 8px 8px 8px 32px;
     text-decoration: none;
-    font-size: 25px;
     color: #b2b2b2;
     display: block;
     transition: 0.3s
 }
 
 /* When you mouse over the navigation links, change their color */
-.sidenav a:hover, .offcanvas a:focus{
+.sidenav a:hover{
     color: #f1f1f1;
 }
 
@@ -242,26 +245,48 @@ button{
     padding-bottom: 0px;
 	margin: 0 8px 0 8px;
 }
-
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
 #main {
-    padding: 20px;
-	color: white;
-    margin-top: 40px;
+	margin-top: 3em;
+	overflow-y: auto;	
 }
 
 /* MY EDITATIONS */
+/* The navigation menu links */
+.sidenav h4{
+    margin: 8px 8px 8px 32px;
+    text-decoration: none;
+    color: white;
+    display: block;
+    transition: 0.3s
+}
+
+.sidenav h3{
+	text-align: center;
+    margin: 8px 8px 20px 32px;
+    text-decoration: underline;
+	font-size: 25px;
+    color: #b2b2b2;
+    display: block;
+    transition: 0.3s
+}
+
 .sidenav .fixedBottom{
     position: absolute;
-    bottom: 10%;
-	width: 100%	
+    bottom: 5%;
+	width: 100%;
 }
 
 .sidenav .fixedBottom .italicBtn{
 	font-style: italic;
 	font-size: 15px !important;
-    /* text-align: right; */
-    text-align: left;
+	text-align: right;
+	margin-right: 10%;
+}
+.main {
+	height: 100%;
+	position: absolute;
+	padding: 0px 20px 0px 20px; 
 }
 /******************* END W3 **************************/
 
@@ -269,17 +294,16 @@ button{
 /* The top navigation kart */
 .kart {
     width: 95%;
-    height: 0px;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    background-color: #111;
-    transition: 0.5s;
-	text-align: center;
-	padding: 1% 1% 0% 1%;
-    overflow: hidden;
+    height: 0;
     margin-left: 2.5%;
-    margin-bottom: 3%;
+    position: fixed;
+    z-index: 1; 
+    top: 0;
+    left: 0;
+    background-color: #111; 
+    overflow: hidden;
+    transition: 0.5s; 
+    text-align: center;
 }
 
 /* The navigation menu links */
@@ -340,7 +364,7 @@ td img{
 .disableClass{
 	pointer-events: none;
 	opacity: 0.3;
-	overflow: hidden;
+	/* overflow: hidden; */
 }
 
 .openBtn{
@@ -356,7 +380,7 @@ td img{
 }
 .openKart {
     right: 10px;
-    padding: 0px 8px 0px 8px;
+    padding: 0em 1em 0em 1em;
 	margin: 8px 0 8px 0;
 }
 .openMenu {	
@@ -423,10 +447,13 @@ td img{
 	top: 0px;
     position: fixed;
     width: 100%;
+    height: 3em;
+    overflow: hidden;
+	z-index: 1;
 }
 
 .pageTitle{
-    margin: 8px 1% 8px 5%;
+    margin: 8px 0px 8px 0px;
     padding: 0 1% 0 1%;
 	text-align: center;
     /* color: #b2b2b2; */
@@ -464,18 +491,21 @@ td img{
     color: #b2b2b2;
 }
 .pageGrid button{
-    background-color: black;
+    background-color: transparent;
 	color: white;
 }
 
 .pageKart{
-    border-collapse: collapse;
     width: 100%;
     overflow-y: auto;
+	padding: 1%;
+}
+.pageKart  table{
+	width: 100%;
+    border-collapse: collapse;
 }
 .pageKart .tblHeader{
 	border: 1px solid #ddd;
-	/* color: #b2b2b2; */
 }
 .pageKart tr:hover{
 	background-color: #111;
@@ -496,7 +526,6 @@ td img{
 .tButton{width: 10%;}
 .tButton button{ 
     font-size: 25px;
-	border-radius: 50%;
 }
 .tButton button:active{ 
 }

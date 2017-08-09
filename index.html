@@ -17,9 +17,9 @@
 
 <body>
 	
-	<div ng-controller='headerController'>
+	<div ng-controller='myController'>
 		<!-- Header -->
-		<div class='header' id='header'>
+		<div id='myHeader' class='header'>
 			<a class='openBtn openMenu' href="javascript:void(0)" ng-click="toggleNav()"><i class="fa fa-bars"></i></a>
 			<h1 class='pageTitle'>8Moons Bazaar</h1>
 			<a class='openBtn openKart' href="javascript:void(0)" ng-click="toggleKart()"><i class="fa fa-shopping-cart"></i></a>
@@ -35,9 +35,20 @@
 			<!-- <div ng-repeat='dept in pageDeparts'> -->
 				<!-- <a href="#{{dept}}">{{dept}}</a> -->
 			<!-- </div> -->
+			<div>
+				<h3 class='infoTitle'>Contato:</h3>
+				<h4>E-mail</h4>
+				<p>8moons.bazzar@gmail.com</p>
+				<h4>Facebook</h4>
+				<a href='fb.me/8moonsbazaar'>fb.me/8moonsbazaar</a>
+				<h4>Instagram</h4>
+				<a>@8moonsbazaar</a>
+				<h4>Telefone</h4>
+				<p>(24) 99265-7154</p>
+			</div>
 			<div class='fixedBottom'>
 				<hr class='littleBar'>
-				<a class='italicBtn' href="#info">Informacoes</a>
+				<!-- <a class='italicBtn' href="#info">Informacoes</a> -->
 				<a class='italicBtn' href="javascript:void(0)">Manutencao</a>
 			</div>
 		</div>
@@ -48,30 +59,32 @@
 			<a class="closebtn" href="javascript:void(0)" ng-click="toggleKart()">&times;</a>
 			<hr class='littleBar'>	
 							
-			<table class='pageKart'>
-			    <tr>
-					<th class='tblHeader tName'>Produto</th>
-					<th class='tblHeader tValue'>Valor(R$)</th>
-					<th class='tblHeader tSize'>Tamanho</th>
-					<th class='tblHeader tQtd'>Quantidade</th>
-			    </tr>
-				<tr ng-repeat="item in pageKart">
-					<td class='tName'>{{item.name}}</td>
-					<td class='tValue'>{{item.value}}</td>
-					<td class='tSize'>Tamanho {{item.size}}</td>
-					<td class='tQtd'>
-						<button ng-click='minus(item.id);'><i class="fa fa-minus"></i></button>
-					    {{item.qtd}}
-						<button ng-click='plus(item.id);'><i class="fa fa-plus"></i></button>
-					</td>
-				</tr>
-			</table>
+			<div class='pageKart'>
+				<table>
+					<tr>
+						<th class='tblHeader tName'>Produto</th>
+						<th class='tblHeader tValue'>Valor(R$)</th>
+						<th class='tblHeader tSize'>Tamanho</th>
+						<th class='tblHeader tQtd'>Quantidade</th>
+					</tr>
+					<tr ng-repeat="item in pageKart">
+						<td class='tName'>{{item.name}}</td>
+						<td class='tValue'>{{item.value}}</td>
+						<td class='tSize'>Tamanho {{item.size}}</td>
+						<td class='tQtd'>
+							<button ng-click='minus(item.id);'><i class="fa fa-minus"></i></button>
+							{{item.qtd}}
+							<button ng-click='plus(item.id);'><i class="fa fa-plus"></i></button>
+						</td>
+					</tr>
+				</table>			
+			</div>
 				
 			<div class='fixedBottom'>
 				<!-- <hr class='littleBar'>		 -->		
 				<div class='kartBtns'>
-					<a class='italicBtn clear' href="javascript:void(0)">Clear</a>
-					<a class='italicBtn checkout' href="#info">Check Out</a>
+					<a class='italicBtn clear' href="javascript:void(0)" ng-click='clear()'>Clear</a>
+					<a class='italicBtn checkout' href="javascript:void(0)" ng-click='checkOut()'>Check Out</a>
 				</div>
 			</div>
 		</div>
@@ -98,8 +111,8 @@
 	</div>		
 
 	<!-- Main screen -->
-	<div id="main">
-		<div ng-controller='gridController'>	
+	<div class='main'>	
+		<div id="main" ng-controller='gridController'>	
 			<div ng-repeat='dept in pageGrid'>
 			
 				<h2 class='deptTitle' id='{{dept.name}}'>{{dept.name}}</h2>
@@ -121,6 +134,7 @@
 					</tr>
 				</table>
 			</div>
+			<hr class='littleBar' style='margin-top: inherit;'>
 		</div>
 	</div>
 

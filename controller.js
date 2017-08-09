@@ -1,5 +1,5 @@
-// Header /////////////////////////////////////////////////////////////////////////////////////////////
-module.controller('headerController', function($scope){
+// Header & Sidebar ///////////////////////////////////////////////////////////////////////////////////
+module.controller('myController', function($scope){
 	// $scope.pageDeparts = [];
 	
 	// Carrega os departamentos no menu lateral
@@ -9,36 +9,36 @@ module.controller('headerController', function($scope){
 			// if( !$scope.pageDeparts.includes( products[id].dept ) ){ $scope.pageDeparts.push(products[id].dept) };
 		// };
 	// };
+	// Trigger para atualizacao automatica da tela
+	// $scope.$watch( 'grid', function(newValue, oldValue) {
+		// if(newValue != oldValue){ loadDeparts(newValue); };
+	// }, true);
 	
 	// Abre menu
 	$scope.toggleNav = function() { 
 		if(document.getElementById("mySidenav").style.width === "250px"){
-			angular.element( document.querySelector( '#main' ) ).removeClass('disableClass');
-			angular.element( document.querySelector( '#header' ) ).removeClass('disableClass');
+			angular.element( document.getElementById( 'main' ) ).removeClass('disableClass');
+			angular.element( document.getElementsByClassName('openBtn') ).removeClass('disableClass');
 			document.getElementById("mySidenav").style.width = "0px";
 		} else {
-			angular.element( document.querySelector( '#main' ) ).addClass('disableClass');
-			angular.element( document.querySelector( '#header' ) ).addClass('disableClass');
+			angular.element( document.getElementById( 'main' ) ).addClass('disableClass');
+			angular.element( document.getElementsByClassName('openBtn') ).addClass('disableClass');
 			document.getElementById("mySidenav").style.width = "250px"; 
 		};
 	};
 	// Abre carrinho
 	$scope.toggleKart = function(){
 		if(document.getElementById("myKart").style.height === "97%"){
-			angular.element( document.querySelector( '#main' ) ).removeClass('disableClass');
-			angular.element( document.querySelector( '#header' ) ).removeClass('disableClass');
+			angular.element( document.getElementById( 'main' ) ).removeClass('disableClass');
+			angular.element( document.getElementsByClassName('openBtn') ).removeClass('disableClass');
 			document.getElementById("myKart").style.height = "0px";
 		} else {
-			angular.element( document.querySelector( '#main' ) ).addClass('disableClass');
-			angular.element( document.querySelector( '#header' ) ).addClass('disableClass');
-			document.getElementById("myKart").style.height = "97%"; 
+			angular.element( document.getElementById( 'main' ) ).addClass('disableClass');
+			angular.element( document.getElementsByClassName('openBtn') ).addClass('disableClass');
+			document.getElementById("myKart").style.height = "97%";
 		};	
 	};
 
-	// Trigger para atualizacao automatica da tela
-	// $scope.$watch( 'grid', function(newValue, oldValue) {
-		// if(newValue != oldValue){ loadDeparts(newValue); };
-	// }, true);
 });
 
 // Grid ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -160,6 +160,12 @@ module.controller('kartController', function($scope){
 			$scope.setMsg('E', 'Item com quantidade insuficiente.');
 		};	
 	};
+	$scope.clear = function(){
+		$scope.kart = [];
+	}
+	$scope.checkOut = function(){
+		// ...
+	}
 	
 	// Trigger para atualizacao automatica da tela
 	$scope.$watch( 'kart', function(newValue, oldValue) {

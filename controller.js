@@ -1,18 +1,5 @@
 // Header & Sidebar ///////////////////////////////////////////////////////////////////////////////////
 module.controller('myController', function($scope){
-	// $scope.pageDeparts = [];
-	
-	// Carrega os departamentos no menu lateral
-	// loadDeparts = function(products){
-		// $scope.pageDeparts = []		
-		// for(var id in products){
-			// if( !$scope.pageDeparts.includes( products[id].dept ) ){ $scope.pageDeparts.push(products[id].dept) };
-		// };
-	// };
-	// Trigger para atualizacao automatica da tela
-	// $scope.$watch( 'grid', function(newValue, oldValue) {
-		// if(newValue != oldValue){ loadDeparts(newValue); };
-	// }, true);
 	
 	// Abre menu
 	$scope.toggleNav = function() { 
@@ -37,6 +24,14 @@ module.controller('myController', function($scope){
 			angular.element( document.getElementsByClassName('openBtn') ).addClass('disableClass');
 			document.getElementById("myKart").style.height = "97%";
 		};	
+	};	
+	// Abre Check Out
+	$scope.toggleCO = function(){
+		if($scope.showCO){ 
+			$scope.showCO = false; 
+		} else { 
+			$scope.showCO = true; 
+		}
 	};
 
 });
@@ -164,11 +159,80 @@ module.controller('kartController', function($scope){
 		$scope.kart = [];
 	}
 	$scope.checkOut = function(){
-		// ...
+		$scope.toggleCO();
 	}
 	
 	// Trigger para atualizacao automatica da tela
 	$scope.$watch( 'kart', function(newValue, oldValue) {
 		if(newValue != oldValue){ loadKart(newValue); };
+	}, true);
+});
+
+// Check Out //////////////////////////////////////////////////////////////////////////////////////////
+module.controller('coController', function($scope){
+	$scope.mail = {
+		user = {
+			name = "",
+			address = "",
+			phone = "",			
+		},
+		subject = '',
+		kart = "",
+		value = 0.00,
+		obs = "",
+	};
+	
+	loadMail = function(){		
+		for(var id in kartItens){
+			if (kartItens[id].qtd > 0) {
+				// Calcula valor total
+				$scope.mail.value += (kartItens[id].qtd * kartItens[id].value);
+				
+				// Monta texto do carrinho
+				$scope.mail.kart += "\t" + "Produto:" + "\n" 
+					+ "\t" + "\t" + "Nome: " + kartItens[id].name + "\n" 
+					+ "\t" + "\t" + "Tamanho: " + kartItens[id].size + "\n" 
+					+ "\t" + "\t" + "Qtd: " + kartItens[id].qtd + "\n" 
+					+ "\t" + "\t" + "Valor(un.): " + kartItens[id].value + "\n";
+			}
+		};
+	};
+	
+	$scope.sendMail = function(){	
+		var body = '';
+		var provider = {
+				smtp = '',
+				address = '',
+				password = '',
+			};
+	
+		// Limpa campos
+		
+		// Monta email	
+		var buyer = $scope.mail.user;
+		var header = buyer.name + ", obrigado por comprar conosco!" + "\n" + "\n";
+		var kart = $scope.mail.kart;
+		var obs = $scope.mail.obs;
+		var footer = "Total(R$): " + $scope.mail.value;
+		
+		body = header + "\n" + kart + "\n" + obs + "\n" + footer;
+		
+		// Envia email
+		if (confirm("Enviar pedido?")) {
+			provider = getProvider();
+			Email.send( provider.address, 		//from
+				$scope.mail.user.address, 		//to
+				$scope.mail.subject, 			//subject
+				body, 							//body
+				provider.smtp, 					//smtp
+				provider.address, 				//login
+				provider.password ); 			//password
+			alert("Pedido enviado!");
+		}
+	};
+	
+	// Trigger para atualizacao automatica da tela
+	$scope.$watch( 'showCO', function(newValue, oldValue) {
+		if(newValue){ loadMail() };
 	}, true);
 });

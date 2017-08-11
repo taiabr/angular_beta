@@ -389,7 +389,7 @@ td img{
 	margin: 8px 0 8px 0;
 }
 
-.closeMsg{
+.closePopup{
 	margin: 8px 8px 8px 8px;
     text-decoration: none;
     color: #b2b2b2;
@@ -412,7 +412,7 @@ td img{
     padding: 0 5% 5% 5% !important;
 }
 
-.msgBox{
+.popUp{
 	position:absolute;
 	top:50%;
 	left:50%;
@@ -422,8 +422,12 @@ td img{
 	height:200px;
 	border:1px solid #d0d0d0;
 	text-align: center;
-	display: table; 
 	z-index: 1;
+    overflow: hidden;
+}
+
+.textBox{
+    display: inline;
 }
 
 .successMsg{
@@ -436,10 +440,35 @@ td img{
 	color: black;
 }
 
-.textMsg{
-	text-align:center;
-	vertical-align: middle;
-	display: table-cell;
+.checkOut{
+    display: inline;
+	background-color: #111;
+	color: white;
+	margin: auto;
+	width: 90%;
+	/* height: 90%; */
+	height: auto;
+	top: 5%;
+	left: 5%;
+	padding: 1%;
+}
+
+.mailForm{
+    text-align: center;
+}
+
+.mailForm  div{
+    display: grid;		
+}
+
+.mailForm  button{
+    background-color: transparent;
+	font-weight: bold;	
+	font-style: italic;
+    margin: 8px 32px 8px 8px;
+    font-size: 20px;
+    color: #b2b2b2;
+    float: right;
 }
 
 .header{
@@ -472,7 +501,7 @@ td img{
     color: #b2b2b2;
     padding: 0px 8px 0px 8px;
 	margin: 8px 24px 8px 0;
-	border-radius: 50%;
+	/* border-radius: 50%; */
 	font-weight: bold;	
     float: right;
 }

@@ -4,7 +4,6 @@ module.run(function($rootScope) {
 	$rootScope.grid = {};
 	$rootScope.kart = {};
 	$rootScope.disableMain = "";
-	$rootScope.showCO = false;
 	$rootScope.mailInfo = {
 		mail: '',
 		password: '',

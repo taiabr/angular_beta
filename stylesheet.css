@@ -221,6 +221,7 @@ button{
     transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
     float: left;
     text-align: left;
+	/* border-right: 0.5px solid #d0d0d0;' */
 }
 
 .sidenav a, .sidenav p{
@@ -304,6 +305,9 @@ button{
     overflow: hidden;
     transition: 0.5s; 
     text-align: center;
+	/* border-bottom: 0.5px solid #d0d0d0; */
+	/* border-right: 0.5px solid #d0d0d0; */
+	/* border-left: 0.5px solid #d0d0d0; */
 }
 
 /* The navigation menu links */
@@ -343,6 +347,63 @@ button{
     text-align: right;
 }
 /******************* END KART **************************/
+
+/******************* INIT MY CHECK OUT *****************/
+/* The top navigation kart */
+.checkOut {
+    height: 97%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: #111; 
+    overflow: hidden;
+    margin: 1% 0 1% 1%;
+    transition: 0.5s;
+	/* border-top: 0.5px solid #d0d0d0; */
+	/* border-bottom: 0.5px solid #d0d0d0; */
+	/* border-left: 0.5px solid #d0d0d0; */
+}
+
+/* The navigation menu links */
+.checkOut a {
+    margin: 8px 32px 8px 8px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #b2b2b2;
+    display: block;
+    transition: 0.3s
+}
+
+/* When you mouse over the navigation links, change their color */
+.checkOut a:hover{
+    color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.checkOut .closebtn {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    font-size: 36px;
+    padding-bottom: 0px;
+	margin: 0 8px 0 8px;
+}
+
+.checkOut .fixedBottom{
+    position: absolute;
+    bottom: 0%;
+	width: 100%;
+    margin-bottom: 0%;
+}
+
+.checkOut .fixedBottom .italicBtn{
+	font-style: italic;
+    text-align: right;
+	-webkit-appearance: initial;
+}
+/******************* END MY CHECK OUT ******************/
 
 img{
 	width: 100%;
@@ -440,37 +501,6 @@ td img{
 	color: black;
 }
 
-.checkOut{
-    display: inline;
-	background-color: #111;
-	color: white;
-	margin: auto;
-	width: 90%;
-	/* height: 90%; */
-	height: auto;
-	top: 5%;
-	left: 5%;
-	padding: 1%;
-}
-
-.mailForm{
-    text-align: center;
-}
-
-.mailForm  div{
-    display: grid;		
-}
-
-.mailForm  button{
-    background-color: transparent;
-	font-weight: bold;	
-	font-style: italic;
-    margin: 8px 32px 8px 8px;
-    font-size: 20px;
-    color: #b2b2b2;
-    float: right;
-}
-
 .header{
     background-color: #111;
 	top: 0px;
@@ -493,7 +523,7 @@ td img{
     /* color: #b2b2b2; */
 }
 
-.kartBtns{
+.topScreenBtns{
 	display: inline-flex;
     font-size: 2em;
     text-decoration: none;
@@ -501,7 +531,6 @@ td img{
     color: #b2b2b2;
     padding: 0px 8px 0px 8px;
 	margin: 8px 24px 8px 0;
-	/* border-radius: 50%; */
 	font-weight: bold;	
     float: right;
 }
@@ -546,6 +575,22 @@ td img{
 }
 .pageKart button{
 	background-color: transparent;
+}
+
+.pageCO {
+    width: 100%;
+	padding: 1%;	
+    text-align: center;
+    display: grid;	
+}
+
+.pageCO label{
+    text-align: left;	
+    overflow: hidden;
+}
+
+.coLabel{
+    margin-top: 3%;	
 }
 
 .tName{width: 35%;}

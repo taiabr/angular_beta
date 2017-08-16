@@ -80,39 +80,41 @@
 				</table>			
 			</div>
 				
-			<div class='fixedBottom'>
-				<!-- <hr class='littleBar'>		 -->		
-				<div class='kartBtns'>
-					<a class='italicBtn clear' href="javascript:void(0)" ng-click='clear()'>Clear</a>
-					<a class='italicBtn checkout' href="javascript:void(0)" ng-click='checkOut()'>Check Out</a>
+			<div class='fixedBottom'>	
+				<div class='topScreenBtns'>
+					<a class='italicBtn' href="javascript:void(0)" ng-click='clear()'>Clear</a>
+					<a class='italicBtn' href="javascript:void(0)" ng-click='checkOut()'>Check Out</a>
 				</div>
 			</div>
 		</div>	
 		
-		<!-- Check Out PopUp -->
-		<div class='popUp checkOut' ng-show='showCO' ng-controller='coController'>
-			<a class="closePopup" href="javascript:void(0)" ng-click="toggleCO();">&times;</a>
-			<h3>CheckOut</h3>
-			<hr class='littleBar'>
+		<!-- Check Out -->
+		<div id="myCO" class='checkOut' ng-controller='coController'>			
+			<h1 class='pageTitle'>CheckOut</h1>
+			<a class="closebtn" href="javascript:void(0)" ng-click="toggleCO()">&times;</a>
+			<hr class='littleBar'>				
 			
-			<form class='mailForm' onsubmit="sendMail()">
-				<div>
-					<input type="text" class="" ng-model="mail.user.name" placeholder="*Nome" required>
-					<input type="mail" class="" ng-model="mail.user.address" placeholder="*E-mail" required></input>
-					<input type="number" class="" ng-model="mail.user.phone" placeholder="*Telefone" pattern="[0-9]" required>
-					<textarea class="" rows="1" cols="80" ng-model="mail.obs" placeholder="Observacoes para o pedido..."></textarea>
-					<p class="">* Campos obrigatorios</p>
-					
-					<textarea class="" rows="7" cols="80" ng-model="mail.kart" readonly></textarea>	
-					
-					<p>Valor total (R$): <p class='red'>{{mail.value}}</p></p>
+			<form class='pageCO' id='coForm' ng-submit='sendMail();'>
+				<label>Informacoes do cliente:</label>
+				<input type="text" class="" ng-model="mail.user.name" placeholder="Nome (Obrigatorio)" required>
+				<input type="mail" class="" ng-model="mail.user.mail" placeholder="E-mail (Obrigatorio)" required>
+				<input type="number" class="" ng-model="mail.user.phone" placeholder="Telefone (Obrigatorio)" pattern="[0-9]" required>
+				<input type="text" class="" ng-model="mail.user.address" placeholder="Endereco (Obrigatorio)" required>
+				
+				<label class='coLabel'>Observacoes para o pedido:</label>
+				<textarea rows="2" cols="80" ng-model="mail.obs" placeholder=""></textarea>
+				
+				<label class='coLabel'>Resumo do carrinho:</label>
+				<textarea rows="7" cols="80" ng-model="mail.kart" readonly></textarea>	
+				
+				<p>Valor total (R$): {{mail.value}}</p>
+				
+				<div class='fixedBottom'>	
+					<div class='topScreenBtns'>
+						<input class='italicBtn' type='submit'>
+					</div>
 				</div>
-				<button type="submit">Enviar Pedido</button>	
-			</form>
-			
-			
-			<!-- <p class='textBox'> -->
-			<!-- </p> -->
+			</form>			
 		</div>
 	
 		<!-- Message PopUp -->

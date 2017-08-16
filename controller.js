@@ -1,37 +1,54 @@
 // Header & Sidebar ///////////////////////////////////////////////////////////////////////////////////
 module.controller('myController', function($scope){
+	// Habilita/Desabilita tela principal
+	setMain = function(mode){
+		switch(mode){
+			case 'D':
+				angular.element( document.getElementById( 'main' ) ).addClass('disableClass');
+				angular.element( document.getElementsByClassName('openBtn') ).addClass('disableClass');
+				break;
+			case 'E':
+				angular.element( document.getElementById( 'main' ) ).removeClass('disableClass');
+				angular.element( document.getElementsByClassName('openBtn') ).removeClass('disableClass');
+				break;
+		};
+	};
 	
 	// Abre menu
 	$scope.toggleNav = function() { 
 		if(document.getElementById("mySidenav").style.width === "250px"){
-			angular.element( document.getElementById( 'main' ) ).removeClass('disableClass');
-			angular.element( document.getElementsByClassName('openBtn') ).removeClass('disableClass');
+			setMain('E');
 			document.getElementById("mySidenav").style.width = "0px";
 		} else {
-			angular.element( document.getElementById( 'main' ) ).addClass('disableClass');
-			angular.element( document.getElementsByClassName('openBtn') ).addClass('disableClass');
+			setMain('D');
 			document.getElementById("mySidenav").style.width = "250px"; 
+			document.getElementById("myKart").style.height = "0px";
+			document.getElementById("myCO").style.width = "0px";
 		};
 	};
 	// Abre carrinho
 	$scope.toggleKart = function(){
 		if(document.getElementById("myKart").style.height === "97%"){
-			angular.element( document.getElementById( 'main' ) ).removeClass('disableClass');
-			angular.element( document.getElementsByClassName('openBtn') ).removeClass('disableClass');
+			setMain('E');
 			document.getElementById("myKart").style.height = "0px";
 		} else {
-			angular.element( document.getElementById( 'main' ) ).addClass('disableClass');
-			angular.element( document.getElementsByClassName('openBtn') ).addClass('disableClass');
+			setMain('D');
+			document.getElementById("mySidenav").style.width = "0px";
 			document.getElementById("myKart").style.height = "97%";
+			document.getElementById("myCO").style.width = "0px";
 		};	
 	};	
 	// Abre Check Out
 	$scope.toggleCO = function(){
-		if($scope.showCO){ 
-			$scope.showCO = false; 
-		} else { 
-			$scope.showCO = true; 
-		}
+		if(document.getElementById("myCO").style.width === "97%"){
+			setMain('E');
+			document.getElementById("myCO").style.width = "0px";
+		} else {
+			setMain('D');
+			document.getElementById("mySidenav").style.width = "0px";
+			document.getElementById("myKart").style.height = "0px";
+			document.getElementById("myCO").style.width = "97%";
+		};	
 	};
 
 });
@@ -170,19 +187,28 @@ module.controller('kartController', function($scope){
 
 // Check Out //////////////////////////////////////////////////////////////////////////////////////////
 module.controller('coController', function($scope){
-	$scope.mail = {
-		user = {
-			name = "",
-			address = "",
-			phone = "",			
-		},
-		subject = '',
-		kart = "",
-		value = 0.00,
-		obs = "",
+	$scope.mail = {};
+	$scope.mail.subject = '';
+	$scope.mail.kart = '';
+	$scope.mail.value = 0.00;
+	$scope.mail.obs = '';
+	$scope.mail.user = {};
+	$scope.mail.user.name = '';
+	$scope.mail.user.mail = '';
+	$scope.mail.user.phone = '';
+	$scope.mail.user.address = '';
+	
+	validateMail = function(user){
+		var ok = true;
+		if(user.name){};
+		if(user.mail){};
+		if(user.phone){};
+		if(user.address){};
+		return ok;
 	};
 	
-	loadMail = function(){		
+	loadMail = function(kartItens){		
+		$scope.mail.kart = '';
 		for(var id in kartItens){
 			if (kartItens[id].qtd > 0) {
 				// Calcula valor total
@@ -199,20 +225,24 @@ module.controller('coController', function($scope){
 	};
 	
 	$scope.sendMail = function(){	
-		var body = '';
-		var provider = {
-				smtp = '',
-				address = '',
-				password = '',
-			};
 	
-		// Limpa campos
+		var buyer = $scope.mail.user;
+		if(!validateBuyer(buyer)){
+			alert("Preencha os campos corretamente e tente de novo."); 
+			return;
+		};
+	
+		var body = '';
+		var provider = {};
+		provider.smtp = '';
+		provider.address = '';
+		provider.password = '';
 		
 		// Monta email	
-		var buyer = $scope.mail.user;
 		var header = buyer.name + ", obrigado por comprar conosco!" + "\n" + "\n";
 		var kart = $scope.mail.kart;
 		var obs = $scope.mail.obs;
+		var userInfo = "";
 		var footer = "Total(R$): " + $scope.mail.value;
 		
 		body = header + "\n" + kart + "\n" + obs + "\n" + footer;
@@ -232,7 +262,7 @@ module.controller('coController', function($scope){
 	};
 	
 	// Trigger para atualizacao automatica da tela
-	$scope.$watch( 'showCO', function(newValue, oldValue) {
-		if(newValue){ loadMail() };
+	$scope.$watch( 'kart', function(newValue, oldValue) {
+		if(newValue != oldValue){ loadMail(newValue); };
 	}, true);
 });

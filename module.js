@@ -4,7 +4,7 @@ module.run(function($rootScope) {
 	$rootScope.grid = {};
 	$rootScope.kart = {};
 	$rootScope.disableMain = "";
-	$rootScope.mailInfo = {
+	$rootScope.provider = {
 		mail: '',
 		password: '',
 		smtp: '',
@@ -56,7 +56,7 @@ module.run(function($rootScope) {
 		$rootScope.grid = snapshot.child('productsAng').val();
 		
 		// Busca configuracoes de email do firebase
-		$rootScope.mailInfo = snapshot.child('mailInfoAng').val();
+		$rootScope.provider = snapshot.child('mailInfoAng').val();
 		
 		$rootScope.$digest()
 	})

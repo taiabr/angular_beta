@@ -1,4 +1,4 @@
-// Header & Sidebar ///////////////////////////////////////////////////////////////////////////////////
+// Body ///////////////////////////////////////////////////////////////////////////////////////////////
 module.controller('myController', function($scope){
 	// Habilita/Desabilita tela principal
 	setMain = function(mode){
@@ -14,7 +14,7 @@ module.controller('myController', function($scope){
 		};
 	};
 	
-	// Abre menu
+	// Abre/fecha menu
 	$scope.toggleNav = function() { 
 		if(document.getElementById("mySidenav").style.width === "250px"){
 			setMain('E');
@@ -26,7 +26,7 @@ module.controller('myController', function($scope){
 			document.getElementById("myCO").style.width = "0px";
 		};
 	};
-	// Abre carrinho
+	// Abre/fecha carrinho
 	$scope.toggleKart = function(){
 		if(document.getElementById("myKart").style.height === "97%"){
 			setMain('E');
@@ -38,19 +38,19 @@ module.controller('myController', function($scope){
 			document.getElementById("myCO").style.width = "0px";
 		};	
 	};	
-	// Abre Check Out
+	// Abre/fecha Check Out
 	$scope.toggleCO = function(){
 		if(document.getElementById("myCO").style.width === "97%"){
 			setMain('E');
 			document.getElementById("myCO").style.width = "0px";
 		} else {
+			if ( angular.equals( $scope.kart, {} ) && !confirm("O carrinho se encontra vazio." + "\n" + "Deseja continuar?") ){ return false };
 			setMain('D');
 			document.getElementById("mySidenav").style.width = "0px";
 			document.getElementById("myKart").style.height = "0px";
 			document.getElementById("myCO").style.width = "97%";
 		};	
 	};
-
 });
 
 // Grid ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -198,27 +198,25 @@ module.controller('coController', function($scope){
 	$scope.mail.user.phone = '';
 	$scope.mail.user.address = '';
 	
-	validateMail = function(user){
+	validateMail = function(mail){
 		var ok = true;
-		if(user.name){};
-		if(user.mail){};
-		if(user.phone){};
-		if(user.address){};
+		if(mail.user.name){};
+		if(mail.user.mail){};
+		if(mail.user.phone){};
+		if(mail.user.address){};
 		return ok;
 	};
-	
+		
 	loadMail = function(kartItens){		
 		$scope.mail.kart = '';
 		for(var id in kartItens){
 			if (kartItens[id].qtd > 0) {
 				// Calcula valor total
-				$scope.mail.value += (kartItens[id].qtd * kartItens[id].value);
-				
+				$scope.mail.value += (kartItens[id].qtd * kartItens[id].value);				
 				// Monta texto do carrinho
-				$scope.mail.kart += "\t" + "Produto:" + "\n" 
-					+ "\t" + "\t" + "Nome: " + kartItens[id].name + "\n" 
-					+ "\t" + "\t" + "Tamanho: " + kartItens[id].size + "\n" 
-					+ "\t" + "\t" + "Qtd: " + kartItens[id].qtd + "\n" 
+				$scope.mail.kart += "\t" + kartItens[id].name + "\n" 
+					+ "\t" + "\t" + "Tamanho:    " + kartItens[id].size + "\n" 
+					+ "\t" + "\t" + "Quantidade: " + kartItens[id].qtd + "\n" 
 					+ "\t" + "\t" + "Valor(un.): " + kartItens[id].value + "\n";
 			}
 		};
@@ -226,37 +224,33 @@ module.controller('coController', function($scope){
 	
 	$scope.sendMail = function(){	
 	
-		var buyer = $scope.mail.user;
-		if(!validateBuyer(buyer)){
+		if( !validateMail($scope.mail) ){
 			alert("Preencha os campos corretamente e tente de novo."); 
-			return;
+			return false;
 		};
-	
-		var body = '';
-		var provider = {};
-		provider.smtp = '';
-		provider.address = '';
-		provider.password = '';
+		
+		if( $scope.mail.obs != '' ){ $scope.mail.obs += "\n" };
 		
 		// Monta email	
-		var header = buyer.name + ", obrigado por comprar conosco!" + "\n" + "\n";
-		var kart = $scope.mail.kart;
-		var obs = $scope.mail.obs;
-		var userInfo = "";
-		var footer = "Total(R$): " + $scope.mail.value;
-		
-		body = header + "\n" + kart + "\n" + obs + "\n" + footer;
+		var body = $scope.mail.user.name + ", obrigado por comprar conosco!" + "\n" + "\n" 
+			+ "Carrinho:" + "\n" + $scope.mail.kart + "\n" 
+			+ "Observacoes do pedido:" + "\n" + "\t" + $scope.mail.obs + "\n" 
+			+ "Informacoes do usuario:" + "\n" 
+				+ "\t" + "Nome:     " + $scope.mail.user.name + "\n" 
+				+ "\t" + "E-mail  : " + $scope.mail.user.mail + "\n" 
+				+ "\t" + "Telefone: " + $scope.mail.user.phone + "\n" 
+				+ "\t" + "Endereco: " + $scope.mail.user.address + "\n" + "\n" 
+			+ "Total(R$): " + $scope.mail.value;
 		
 		// Envia email
 		if (confirm("Enviar pedido?")) {
-			provider = getProvider();
-			Email.send( provider.address, 		//from
-				$scope.mail.user.address, 		//to
-				$scope.mail.subject, 			//subject
-				body, 							//body
-				provider.smtp, 					//smtp
-				provider.address, 				//login
-				provider.password ); 			//password
+			Email.send( $scope.provider.address, 	//from
+				$scope.mail.user.address, 			//to
+				$scope.mail.subject, 				//subject
+				body, 								//body
+				$scope.provider.smtp, 				//smtp
+				$scope.provider.address, 			//login
+				$scope.provider.password ); 		//password
 			alert("Pedido enviado!");
 		}
 	};

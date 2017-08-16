@@ -112,7 +112,7 @@ input,
 optgroup,
 select,
 textarea {
-    font-family: sans-serif;
+    /* font-family: sans-serif; */
     font-size: 100%;
     line-height: 1.15;
     margin: 0
@@ -183,8 +183,11 @@ template {
 	-webkit-box-sizing: border-box !important; 
 	box-sizing: border-box !important;
 	overflow-x: hidden;
+    font-family: Inconsolata !important;
 }
-
+span, i{
+	font-family: FontAwesome !important;
+}
 html{
 	background-color: black !important;
 	color: white !important;
@@ -221,6 +224,7 @@ button{
     transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
     float: left;
     text-align: left;
+	z-index: 2;
 	/* border-right: 0.5px solid #d0d0d0;' */
 }
 
@@ -305,6 +309,7 @@ button{
     overflow: hidden;
     transition: 0.5s; 
     text-align: center;
+	z-index: 2;
 	/* border-bottom: 0.5px solid #d0d0d0; */
 	/* border-right: 0.5px solid #d0d0d0; */
 	/* border-left: 0.5px solid #d0d0d0; */
@@ -361,13 +366,14 @@ button{
     overflow: hidden;
     margin: 1% 0 1% 1%;
     transition: 0.5s;
+	z-index: 2;
 	/* border-top: 0.5px solid #d0d0d0; */
 	/* border-bottom: 0.5px solid #d0d0d0; */
 	/* border-left: 0.5px solid #d0d0d0; */
 }
 
 /* The navigation menu links */
-.checkOut a {
+.checkOut a, .checkOut .italicBtn {
     margin: 8px 32px 8px 8px;
     text-decoration: none;
     font-size: 20px;
@@ -377,7 +383,7 @@ button{
 }
 
 /* When you mouse over the navigation links, change their color */
-.checkOut a:hover{
+.checkOut a:hover, .checkOut .italicBtn:hover{
     color: #f1f1f1;
 }
 
@@ -401,7 +407,8 @@ button{
 .checkOut .fixedBottom .italicBtn{
 	font-style: italic;
     text-align: right;
-	-webkit-appearance: initial;
+    background-color: transparent;
+    border: none;
 }
 /******************* END MY CHECK OUT ******************/
 
@@ -428,6 +435,10 @@ td img{
 	/* overflow: hidden; */
 }
 
+.italicBtn{
+	cursor:pointer
+}
+
 .openBtn{
     position: fixed;
     top: 0;
@@ -438,16 +449,14 @@ td img{
     color: white;
 	border-radius: 50%;
 	font-weight: bold;	
-}
-.openKart {
-    right: 10px;
     padding: 0em 1em 0em 1em;
 	margin: 8px 0 8px 0;
 }
+.openKart {
+    right: 10px;
+}
 .openMenu {	
     left: 10px;
-    padding: 0px 8px 0px 8px;
-	margin: 8px 0 8px 0;
 }
 
 .closePopup{
